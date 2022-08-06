@@ -1,8 +1,8 @@
 {
-  "name": "goit-react-hw-005-movies",
+  "name": "goit-react-hw-05-movies",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://NatalaBoiko.github.io/goit-react-hw-005-movies/",
+  "homepage": "https://NatalaBoiko.github.io/goit-react-hw-05-movies/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
