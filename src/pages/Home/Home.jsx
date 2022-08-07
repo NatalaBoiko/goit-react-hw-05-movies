@@ -11,7 +11,7 @@ const Home = () => {
 
   return (
     <>
-      <h2>Tranding today</h2>
+      <h1>Tranding today</h1>
       {movies.length > 0 && (
         <ul>
           {movies.map(({ id, title, poster }) => (
