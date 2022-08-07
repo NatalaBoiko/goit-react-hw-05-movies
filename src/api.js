@@ -67,6 +67,20 @@ export const fetchMovieDetails = movieId => {
     });
 };
 
-// https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=2123fea73978ac77fe6a3f347cf7ced6&language=en-US
+export const fetchMovieCredits = movieId => {
+  return axios
+    .get(`/movie/${movieId}/credits?`)
+    .then(({ data: { cast } }) =>
+      cast.map(({ id, name, character, profile_path: photo }) => ({
+        id,
+        name,
+        character,
+        photo: IMG_URL + photo,
+      }))
+    )
+    .catch(error => {
+      console.log(error.message);
+    });
+};
 
 // https://api.themoviedb.org/3/movie/{movie_id}/reviews?api_key=2123fea73978ac77fe6a3f347cf7ced6&language=en-US&page=1

@@ -47,6 +47,8 @@ const MovieDetails = () => {
           </div>
 
           <p>Additional information</p>
+          <hr />
+
           <ul>
             <li>
               <Link to={'cast'} state={{ from: location?.state?.from }}>

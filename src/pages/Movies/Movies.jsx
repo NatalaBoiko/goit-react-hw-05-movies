@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams, Link, useLocation } from 'react-router-dom';
 import { fetchByQuery } from '../../api';
+import NotFound from '../NotFound';
 
 const Movies = () => {
   const [query, setQuery] = useState('');
@@ -31,7 +32,7 @@ const Movies = () => {
         <input type="text" value={query} onChange={onChange} />
         <button type="submit">search</button>
       </form>
-      {movies && (
+      {/* {movies && (
         <ul>
           {movies.map(({ id, title, poster }) => (
             <li key={id}>
@@ -42,6 +43,21 @@ const Movies = () => {
             </li>
           ))}
         </ul>
+      )} */}
+
+      {movies.length > 0 ? (
+        <ul>
+          {movies.map(({ id, title, poster }) => (
+            <li key={id}>
+              <Link to={`/movies/${id}`} state={{ from: location }}>
+                <img src={poster} alt={title} />
+                {title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <h2>Oops,... nothing found...</h2>
       )}
     </>
   );

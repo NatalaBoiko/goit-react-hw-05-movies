@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { fetchTrending } from '../../api';
+import NotFound from '../NotFound';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -12,7 +13,7 @@ const Home = () => {
   return (
     <>
       <h1>Tranding today</h1>
-      {movies.length > 0 && (
+      {movies.length > 0 ? (
         <ul>
           {movies.map(({ id, title, poster }) => (
             <li key={id}>
@@ -23,6 +24,8 @@ const Home = () => {
             </li>
           ))}
         </ul>
+      ) : (
+        <h2>Oops,... nothing found...</h2>
       )}
     </>
   );
