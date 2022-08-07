@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { fetchTrending } from '../../api';
-import NotFound from '../NotFound';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -25,7 +24,7 @@ const Home = () => {
           ))}
         </ul>
       ) : (
-        <h2>Oops,... nothing found...</h2>
+        <h2>Oops... nothing found...</h2>
       )}
     </>
   );

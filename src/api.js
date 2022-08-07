@@ -83,4 +83,17 @@ export const fetchMovieCredits = movieId => {
     });
 };
 
-// https://api.themoviedb.org/3/movie/{movie_id}/reviews?api_key=2123fea73978ac77fe6a3f347cf7ced6&language=en-US&page=1
+export const fetchMovieReviews = movieId => {
+  return axios
+    .get(`/movie/${movieId}/reviews?`)
+    .then(({ data: { results } }) =>
+      results.map(({ id, author, content }) => ({
+        id,
+        author,
+        content,
+      }))
+    )
+    .catch(error => {
+      console.log(error.message);
+    });
+};
