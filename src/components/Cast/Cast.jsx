@@ -1,7 +1,15 @@
 import { fetchMovieCredits } from '../../api';
-import NotFound from '../../pages/NotFound';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import {
+  CastContainer,
+  CastList,
+  CastItem,
+  Img,
+  CastDescr,
+  CastName,
+  CastChar,
+} from './Cast.styled';
 
 const Cast = () => {
   const { movieId } = useParams('movieId');
@@ -12,24 +20,23 @@ const Cast = () => {
   }, [movieId]);
 
   return (
-    <>
-      <h2>Cast</h2>;
-      {credits.length > 0 ? (
-        <ul>
+    <CastContainer>
+      {credits.length > 0 && (
+        <CastList>
           {credits.map(({ id, name, character, photo }) => {
             return (
-              <li key={id}>
-                <img src={photo} alt={name} />
-                <h3>{name}</h3>
-                <p>Character: {character}</p>
-              </li>
+              <CastItem key={id}>
+                <Img src={photo} alt={name} />
+                <CastDescr>
+                  <CastName>{name}</CastName>
+                  <CastChar>Character: {character}</CastChar>
+                </CastDescr>
+              </CastItem>
             );
           })}
-        </ul>
-      ) : (
-        <NotFound />
+        </CastList>
       )}
-    </>
+    </CastContainer>
   );
 };
 

@@ -25,7 +25,6 @@ export const MovieList = styled.ul`
   margin-right: auto;
   justify-content: center;
   padding: 0;
-  transition-duration: 300ms;
 `;
 
 export const MovieItem = styled.li`

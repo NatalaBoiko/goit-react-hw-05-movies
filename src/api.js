@@ -1,4 +1,6 @@
 import axios from 'axios';
+import noPhoto from './components/images/images.jpg';
+
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 axios.defaults.params = {
   api_key: '2123fea73978ac77fe6a3f347cf7ced6',
@@ -75,7 +77,7 @@ export const fetchMovieCredits = movieId => {
         id,
         name,
         character,
-        photo: IMG_URL + photo,
+        photo: photo ? IMG_URL + photo : noPhoto,
       }))
     )
     .catch(error => {
