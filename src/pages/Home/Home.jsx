@@ -1,6 +1,15 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { fetchTrending } from '../../api';
+import {
+  HomeContainer,
+  HomeTitle,
+  MovieList,
+  MovieItem,
+  MovieLink,
+  Img,
+  MovieTitle,
+} from './Home.styled';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -10,23 +19,23 @@ const Home = () => {
   }, []);
 
   return (
-    <>
-      <h1>Tranding today</h1>
-      {movies.length > 0 ? (
-        <ul>
+    <HomeContainer>
+      <HomeTitle>Tranding today</HomeTitle>
+      {movies.length > 0 && (
+        <MovieList>
           {movies.map(({ id, title, poster }) => (
-            <li key={id}>
-              <Link to={`/movies/${id}`} state={{ from: location }}>
-                <img src={poster} alt={title} />
-                {title}
-              </Link>
-            </li>
+            <MovieItem key={id}>
+              <MovieLink to={`/movies/${id}`} state={{ from: location }}>
+                <Img src={poster} alt={title} />
+                <MovieTitle>
+                  <h3>{title}</h3>
+                </MovieTitle>
+              </MovieLink>
+            </MovieItem>
           ))}
-        </ul>
-      ) : (
-        <h2>Oops... nothing found...</h2>
+        </MovieList>
       )}
-    </>
+    </HomeContainer>
   );
 };
 

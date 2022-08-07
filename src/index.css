@@ -1,4 +1,8 @@
-@import-normalize; /* bring in normalize.css styles */
+/* @import-normalize;  */
+/* bring in normalize.css styles */
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -13,3 +17,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+ul {
+  list-style: none;
+}
+/* h1,
+h2,
+h3 {
+  display: block;
+} */

@@ -1,6 +1,17 @@
 import { useState, useEffect } from 'react';
-import { useSearchParams, Link, useLocation } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
 import { fetchByQuery } from '../../api';
+import {
+  FormDiv,
+  Form,
+  Input,
+  Button,
+  MovieList,
+  MovieItem,
+  MovieLink,
+  Img,
+  MovieTitle,
+} from './Movies.styled';
 
 const Movies = () => {
   const [query, setQuery] = useState('');
@@ -28,21 +39,25 @@ const Movies = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input type="text" value={query} onChange={onChange} />
-        <button type="submit">search</button>
-      </form>
-      {movies && (
-        <ul>
+      <FormDiv>
+        <Form onSubmit={handleSubmit}>
+          <Input type="text" value={query} onChange={onChange} />
+          <Button type="submit">search</Button>
+        </Form>
+      </FormDiv>
+      {movies.length > 0 && (
+        <MovieList>
           {movies.map(({ id, title, poster }) => (
-            <li key={id}>
-              <Link to={`/movies/${id}`} state={{ from: location }}>
-                <img src={poster} alt={title} />
-                {title}
-              </Link>
-            </li>
+            <MovieItem key={id}>
+              <MovieLink to={`/movies/${id}`} state={{ from: location }}>
+                <Img src={poster} alt={title} />
+                <MovieTitle>
+                  <h3>{title}</h3>
+                </MovieTitle>
+              </MovieLink>
+            </MovieItem>
           ))}
-        </ul>
+        </MovieList>
       )}
     </>
   );
