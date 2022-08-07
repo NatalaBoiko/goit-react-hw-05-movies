@@ -1,13 +1,17 @@
 import { useState, useEffect } from 'react';
 
-import {
-  useParams,
-  Link,
-  Outlet,
-  useLocation,
-  useNavigate,
-} from 'react-router-dom';
+import { useParams, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { fetchMovieDetails } from '../../api';
+import {
+  Btn,
+  MovieContainer,
+  Img,
+  MovieInfo,
+  MovieTitle,
+  AddInfo,
+  InfoList,
+  InfoLink,
+} from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
@@ -29,36 +33,39 @@ const MovieDetails = () => {
 
   return (
     <div>
-      <button type="button" onClick={backToMovies}>
+      <Btn type="button" onClick={backToMovies}>
         Back to movies
-      </button>
+      </Btn>
       {movie && (
         <div>
-          <div>
-            <img src={poster} alt={title} />
-            <h2>
-              {title} ({releaseYear})
-            </h2>
-            <p>User Score: {userScore}%</p>
-            <h3>Overview</h3>
-            <p>{overview}</p>
-            <h3>Genres</h3>
-            <p>{genres.map(({ name }) => name).join(' ')}</p>
-          </div>
+          <MovieContainer>
+            <Img src={poster} alt={title} />
+            <MovieInfo>
+              <MovieTitle>
+                {title} ({releaseYear})
+              </MovieTitle>
+              <p>User Score: {userScore}%</p>
+              <h3>Overview</h3>
+              <p>{overview}</p>
+              <h3>Genres</h3>
+              <p>{genres.map(({ name }) => name).join(' ')}</p>
+            </MovieInfo>
+          </MovieContainer>
 
-          <p>Additional information</p>
-          <hr />
+          <AddInfo>Additional information</AddInfo>
 
-          <ul>
+          <InfoList>
             <li>
-              <Link to={'cast'} state={{ from: location?.state?.from }}>
+              <InfoLink to={'cast'} state={{ from: location?.state?.from }}>
                 Cast
-              </Link>
-              <Link to={'reviews'} state={{ from: location?.state?.from }}>
-                Reviews
-              </Link>
+              </InfoLink>
             </li>
-          </ul>
+            <li>
+              <InfoLink to={'reviews'} state={{ from: location?.state?.from }}>
+                Reviews
+              </InfoLink>
+            </li>
+          </InfoList>
           <Outlet />
         </div>
       )}
