@@ -10,6 +10,14 @@ axios.defaults.params = {
 // https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
+// export const fetchTrending = async () => {
+//   const { data } = await axios.get(`/trending/all/day?`);
+//   console.log(data);
+//   const response = data.results;
+//   return response;
+// };
+// fetchTrending();
+
 export const fetchTrending = async () => {
   return axios
     .get(`/trending/all/day?`)
